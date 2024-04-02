@@ -2,7 +2,6 @@ const { Sequelize } = require('sequelize')
 
 // database
 const sequelize = new Sequelize(
-  'postgres://fakeurl', // TODO
   process.env.DB_NAME, // Database name
   process.env.DB_USER, // User
   process.env.DB_PASSWORD, // Password
@@ -15,8 +14,12 @@ const sequelize = new Sequelize(
         rejectUnauthorized: false,
       },
     },
+    define: {
+      createdAt: 'added',
+      updatedAt: 'updated',
+    }
   },
-);
+)
 
 // authentication and synchronization
 sequelize.authenticate()
